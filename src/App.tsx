@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Input } from "./Components/Input";
+import { Button } from "./Components/Button";
 
 type Task = {
   title: string;
@@ -25,19 +27,8 @@ function App() {
 
       {/* Form to add new tasks */}
       <form onSubmit={handleSubmit} className="w-full max-w-sm flex items-center mb-6">
-        <input
-          className="appearance-none border rounded-l w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          placeholder="Add a new task"
-          value={inputValue}
-          onChange={(event) => setInputValue(event.target.value)}
-        />
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Add
-        </button>
+        <Input type="text" inputValue={inputValue} setInputValue={setInputValue} />
+        <Button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline">Add</Button>
       </form>
 
       <div className="w-full max-w-sm bg-white rounded-lg shadow-md p-4">
@@ -45,12 +36,12 @@ function App() {
           tasks.map((task) => (
             <div key={task.id} className="flex justify-between items-center mb-4">
               <p className="text-gray-700">{task.title}</p>
-              <button
+              <Button 
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
                 onClick={() => handleDelete(task.id)}
               >
                 Del
-              </button>
+              </Button>
             </div>
           ))
         ) : (
