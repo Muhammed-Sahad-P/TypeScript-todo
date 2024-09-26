@@ -4,7 +4,7 @@ type InputProps = {
     setInputValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Input = ({type , inputValue, setInputValue }: InputProps) => {
+export const Input = ({ inputValue, setInputValue }: InputProps) => {
     return (
         <div>
             <input

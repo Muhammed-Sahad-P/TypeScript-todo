@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Input } from "./Components/Input";
 import { Button } from "./Components/Button";
+import { type Task } from "./Types/utils";
+import { ItemList } from "./Components/ItemList";
 
-type Task = {
-  title: string;
-  id: string;
-};
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -17,9 +15,7 @@ function App() {
     setInputValue("");
   };
 
-  const handleDelete = (id: string) => {
-    setTasks((prev) => prev.filter((data) => data.id !== id));
-  }
+ 
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
@@ -32,21 +28,7 @@ function App() {
       </form>
 
       <div className="w-full max-w-sm bg-white rounded-lg shadow-md p-4">
-        {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <div key={task.id} className="flex justify-between items-center mb-4">
-              <p className="text-gray-700">{task.title}</p>
-              <Button 
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
-                onClick={() => handleDelete(task.id)}
-              >
-                Del
-              </Button>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-500">No tasks added yet</p>
-        )}
+      <ItemList tasks={tasks} setTasks={setTasks} />
       </div>
     </div>
   );
